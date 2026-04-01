@@ -43,6 +43,8 @@ function loadBoard(type){
   menuTitle.textContent = type + " Leaderboard";
   menuContent.innerHTML="";
 
+  if(!data[type]) return;
+
   data[type].forEach((name,i)=>{
     const div=document.createElement("div");
     div.className="player";
