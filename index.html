@@ -1,41 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Oak PVP</title>
+<link rel="stylesheet" href="style.css">
 
-  <!-- Minecraft-style font -->
-  <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+<!-- Minecraft Font -->
+<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!-- Icons -->
+<img src="https://i.imgur.com/aDepPcr.png" class="top-left-icon" id="icon1" data-tooltip="Sword">
+<img src="https://i.imgur.com/Wo3HG50.png" class="top-left-icon" id="icon2" data-tooltip="Axe">
+<img src="https://i.imgur.com/sF0OP5M.png" class="top-left-icon" id="icon3" data-tooltip="Mace">
+<img src="https://i.imgur.com/rrxfGri.png" class="top-left-icon" id="icon4" data-tooltip="UHC">
+<img src="https://i.imgur.com/mfbPQ6G.png" class="top-left-icon" id="icon5" data-tooltip="Pot">
+<img src="https://i.imgur.com/zPFwrfs.png" class="top-left-icon" id="icon6" data-tooltip="Netherite OP">
+<img src="https://i.imgur.com/7J6TS5u.png" class="top-left-icon" id="icon7" data-tooltip="Smp">
+<img src="https://i.imgur.com/94E3KpM.png" class="top-left-icon" id="icon8" data-tooltip="Vanilla">
+<img src="https://i.imgur.com/t0lel83.png" class="top-left-icon" id="icon9" data-tooltip="Overall">
 
-  <!-- Icons -->
-  <img src="https://i.imgur.com/aDepPcr.png" class="top-left-icon" id="icon1">
-  <img src="https://i.imgur.com/Wo3HG50.png" class="top-left-icon" id="icon2">
-  <img src="https://i.imgur.com/sF0OP5M.png" class="top-left-icon" id="icon3">
-  <img src="https://i.imgur.com/rrxfGri.png" class="top-left-icon" id="icon4">
-  <img src="https://i.imgur.com/mfbPQ6G.png" class="top-left-icon" id="icon5">
-  <img src="https://i.imgur.com/zPFwrfs.png" class="top-left-icon" id="icon6">
-  <img src="https://i.imgur.com/7J6TS5u.png" class="top-left-icon" id="icon7">
-  <img src="https://i.imgur.com/94E3KpM.png" class="top-left-icon" id="icon8">
-  <img src="https://i.imgur.com/t0lel83.png" class="top-left-icon" id="icon9">
+<!-- Menu -->
+<div class="menu">
+  <div class="menu-header" id="menuTitle">Overall Leaderboard</div>
+  <div class="menu-content" id="menuContent"></div>
+</div>
 
-  <!-- Title -->
-  <h1 class="main-title">Oak PVP</h1>
+<h1 class="main-title">Oak PVP</h1>
 
-  <!-- IP Bubble -->
-  <div class="ip-bubble">
-    <span class="ip-label">IP:</span>
-    <span class="ip-value" id="ipValue">167.</span>
-    <button class="copy-btn" id="copyBtn">Copy</button>
-    <span class="copied-text" id="copiedText">Copied!</span>
-  </div>
+<!-- IP Bubble -->
+<div class="ip-bubble">
+  <span class="ip-label">IP:</span>
+  <span class="ip-value" id="ipValue">167.</span>
+  <button class="copy-btn" id="copyBtn">Copy</button>
+  <span class="copied-text" id="copiedText">Copied!</span>
+</div>
 
-  <!-- SCROLLABLE MENU (RESTORED) -->
-  <div id="menu" class="scrollable-menu"></div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+<script src="script.js"></script>
