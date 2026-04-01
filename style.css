@@ -1,72 +1,214 @@
-// Copy button
-const copyBtn = document.getElementById("copyBtn");
-const ipValue = document.getElementById("ipValue");
-const copiedText = document.getElementById("copiedText");
-
-copyBtn.onclick = () => {
-  navigator.clipboard.writeText(ipValue.textContent);
-
-  copiedText.classList.add("show");
-  setTimeout(() => {
-    copiedText.classList.remove("show");
-  }, 1000);
-};
-
-// Tooltip
-const tooltip = document.createElement("div");
-tooltip.className = "tooltip";
-document.body.appendChild(tooltip);
-
-document.querySelectorAll(".top-left-icon").forEach(icon=>{
-  icon.onmouseenter=()=>{
-    tooltip.textContent=icon.dataset.tooltip;
-    tooltip.classList.add("show");
-  };
-  icon.onmousemove=e=>{
-    tooltip.style.left=e.clientX+"px";
-    tooltip.style.top=e.clientY+"px";
-  };
-  icon.onmouseleave=()=>tooltip.classList.remove("show");
-});
-
-// Leaderboard
-const data = {
-  "Sword": ["Player1","Player2","Player3","Player4","Player5","Player6","Player7","Player8","Player9","Player10"],
-  "Axe": ["Axer1","Axer2","Axer3","Axer4","Axer5","Axer6","Axer7","Axer8","Axer9","Axer10"],
-  "Overall": ["Best1","Best2","Best3","Best4","Best5","Best6","Best7","Best8","Best9","Best10"]
-};
-
-const menuTitle = document.getElementById("menuTitle");
-const menuContent = document.getElementById("menuContent");
-
-function loadBoard(type){
-  menuTitle.textContent = type + " Leaderboard";
-  menuContent.innerHTML="";
-
-  if(!data[type]) return;
-
-  data[type].forEach((name,i)=>{
-    const div=document.createElement("div");
-    div.className="player";
-
-    let rankClass="";
-    if(i==0) rankClass="rank1";
-    if(i==1) rankClass="rank2";
-    if(i==2) rankClass="rank3";
-
-    div.innerHTML = `
-      <span class="${rankClass}">#${i+1}</span>
-      <span>${name}</span>
-      <span>${Math.floor(Math.random()*1000)} pts</span>
-    `;
-    menuContent.appendChild(div);
-  });
+body {
+  background-color: #253b3b;
+  margin: 0;
+  text-align: center;
+  font-family: 'Minecraft', Arial;
 }
 
-// Default
-loadBoard("Overall");
+/* Icons */
+.top-left-icon {
+  position: fixed;
+  top: 110px;
+  width: 50px;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
-// Click icons
-document.querySelectorAll(".top-left-icon").forEach(icon=>{
-  icon.onclick=()=>loadBoard(icon.dataset.tooltip);
-});
+#icon1 { left: 70px; }
+#icon2 { left: 140px; }
+#icon3 { left: 210px; }
+#icon4 { left: 280px; }
+#icon5 { left: 350px; }
+#icon6 { left: 420px; }
+#icon7 { left: 490px; }
+#icon8 { left: 560px; }
+#icon9 { left: 630px; }
+
+.top-left-icon:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px #1e90ff;
+}
+
+/* 🔥 TOOLTIP (raised 2px) */
+.tooltip {
+  position: fixed;
+  background: black;
+  color: white;
+  padding: 6px 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.1s;
+
+  transform: translate(-50%, -130%);
+
+  /* 🔥 PIXEL BORDER */
+  border: 2px solid #555;
+  box-shadow:
+    2px 2px 0 #000,
+    -2px -2px 0 #aaa;
+}
+.tooltip.show {
+  opacity: 1;
+}
+
+/* 🔥 MENU (pixel border added) */
+.menu {
+  position: fixed;
+  top: 180px;
+  width: 100%;
+  height: 400px;
+  background: #2b2b2b;
+
+  overflow-y: auto;
+
+  border-top: 3px solid #555;
+
+  /* pixel effect */
+  box-shadow:
+    inset 0 0 0 2px #000,
+    inset 2px 2px 0 #aaa,
+    inset -2px -2px 0 #111;
+}
+
+.menu-header {
+  color: #1e90ff;
+  padding: 10px 20px;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* 🔥 PLAYER ROWS (pixel style) */
+.player {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  margin: 6px;
+  background: #3a3a3a;
+
+  /* pixel border */
+  border: 2px solid #000;
+  box-shadow:
+    inset 2px 2px 0 #aaa,
+    inset -2px -2px 0 #111;
+
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.3s forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity:1; transform:translateY(0);}
+}
+
+.rank1 { color: gold; }
+.rank2 { color: silver; }
+.rank3 { color: #cd7f32; }
+
+/* 🔥 TITLE (glow + animation) */
+.main-title {
+  color: #fff;
+  font-size: 48px;
+  margin: 20px 0;
+
+  opacity: 0;
+  animation: fadeIn 1.5s forwards, glow 2s infinite alternate;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #1e90ff;
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 25px #1e90ff;
+  }
+}
+
+/* 🔥 IP BUBBLE (bigger + pixel border) */
+.ip-bubble {
+  position: fixed;
+  top: 50px;
+  right: 20px;
+
+  background: #2b2b2b;
+  color: white;
+
+  padding: 10px 16px;
+  font-size: 14px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  /* pixel border */
+  border: 2px solid #000;
+  box-shadow:
+    inset 2px 2px 0 #aaa,
+    inset -2px -2px 0 #111;
+}
+
+/* label */
+.ip-label {
+  position: absolute;
+  top: -18px;
+  left: 10px;
+  font-size: 11px;
+  background: #2b2b2b;
+  padding: 0 4px;
+}
+
+/* 🔥 COPY BUTTON (pixel style) */
+.copy-btn {
+  font-family: 'Minecraft', Arial;
+  background: #3a3a3a;
+  color: white;
+
+  padding: 6px 10px;
+  font-size: 13px;
+
+  border: 2px solid #000;
+
+  /* pixel border */
+  box-shadow:
+    inset 2px 2px 0 #aaa,
+    inset -2px -2px 0 #111;
+
+  cursor: pointer;
+}
+
+.copy-btn:active {
+  box-shadow:
+    inset -2px -2px 0 #aaa,
+    inset 2px 2px 0 #111;
+}
+
+/* 🔥 COPIED TEXT */
+.copied-text {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-45%) translateY(3px);
+
+  font-size: 11px;
+  background: #1e90ff;
+  color: #fff;
+  padding: 3px 6px;
+
+  border: 2px solid #000;
+
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #000;
+
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.copied-text.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
