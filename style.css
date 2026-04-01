@@ -1,117 +1,214 @@
-/* Body */
 body {
   background-color: #253b3b;
-  font-family: "Minecraft", monospace;
   margin: 0;
   text-align: center;
+  font-family: 'Minecraft', Arial;
 }
 
 /* Icons */
 .top-left-icon {
   position: fixed;
+  top: 110px;
   width: 50px;
-  height: 50px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.3s;
-  z-index: 1000;
+  transition: 0.2s;
 }
 
-/* Icon spacing (FIXED) */
-#icon1 { top: 110px; left: 70px; }
-#icon2 { top: 110px; left: 140px; }
-#icon3 { top: 110px; left: 210px; }
-#icon4 { top: 110px; left: 280px; }
-#icon5 { top: 110px; left: 350px; }
-#icon6 { top: 110px; left: 420px; }
-#icon7 { top: 110px; left: 490px; }
-#icon8 { top: 110px; left: 560px; }
-#icon9 { top: 110px; left: 630px; }
+#icon1 { left: 70px; }
+#icon2 { left: 140px; }
+#icon3 { left: 210px; }
+#icon4 { left: 280px; }
+#icon5 { left: 350px; }
+#icon6 { left: 420px; }
+#icon7 { left: 490px; }
+#icon8 { left: 560px; }
+#icon9 { left: 630px; }
 
-/* Hover effect */
 .top-left-icon:hover {
   transform: scale(1.2);
-  box-shadow: 0 0 15px #1e90ff, 0 0 30px #1e90ff;
+  box-shadow: 0 0 15px #1e90ff;
 }
 
-/* Title */
+/* 🔥 TOOLTIP (raised 2px) */
+.tooltip {
+  position: fixed;
+  background: black;
+  color: white;
+  padding: 6px 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.1s;
+
+  transform: translate(-50%, -130%);
+
+  /* 🔥 PIXEL BORDER */
+  border: 2px solid #555;
+  box-shadow:
+    2px 2px 0 #000,
+    -2px -2px 0 #aaa;
+}
+.tooltip.show {
+  opacity: 1;
+}
+
+/* 🔥 MENU (pixel border added) */
+.menu {
+  position: fixed;
+  top: 180px;
+  width: 100%;
+  height: 400px;
+  background: #2b2b2b;
+
+  overflow-y: auto;
+
+  border-top: 3px solid #555;
+
+  /* pixel effect */
+  box-shadow:
+    inset 0 0 0 2px #000,
+    inset 2px 2px 0 #aaa,
+    inset -2px -2px 0 #111;
+}
+
+.menu-header {
+  color: #1e90ff;
+  padding: 10px 20px;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* 🔥 PLAYER ROWS (pixel style) */
+.player {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  margin: 6px;
+  background: #3a3a3a;
+
+  /* pixel border */
+  border: 2px solid #000;
+  box-shadow:
+    inset 2px 2px 0 #aaa,
+    inset -2px -2px 0 #111;
+
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.3s forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity:1; transform:translateY(0);}
+}
+
+.rank1 { color: gold; }
+.rank2 { color: silver; }
+.rank3 { color: #cd7f32; }
+
+/* 🔥 TITLE (glow + animation) */
 .main-title {
   color: #fff;
-  font-size: 40px;
-  margin-top: 20px;
-  text-shadow: 0 0 10px #1e90ff;
-  animation: glow 2s infinite alternate;
+  font-size: 48px;
+  margin: 20px 0;
+
+  opacity: 0;
+  animation: fadeIn 1.5s forwards, glow 2s infinite alternate;
 }
 
-/* Glow animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes glow {
-  from { text-shadow: 0 0 5px #fff; }
-  to { text-shadow: 0 0 20px #1e90ff; }
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #1e90ff;
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 25px #1e90ff;
+  }
 }
 
-/* IP Bubble (FIXED SIZE + POSITION) */
+/* 🔥 IP BUBBLE (bigger + pixel border) */
 .ip-bubble {
   position: fixed;
-  top: 40px;
+  top: 50px;
   right: 20px;
-  background: #000;
-  padding: 10px 15px;
-  border-radius: 10px;
-  display: flex;
+
+  background: #2b2b2b;
+  color: white;
+
+  padding: 10px 16px;
+  font-size: 14px;
+
+  display: inline-flex;
   align-items: center;
   gap: 10px;
-  border: 2px solid #fff;
-  font-size: 10px;
+
+  /* pixel border */
+  border: 2px solid #000;
+  box-shadow:
+    inset 2px 2px 0 #aaa,
+    inset -2px -2px 0 #111;
 }
 
+/* label */
+.ip-label {
+  position: absolute;
+  top: -18px;
+  left: 10px;
+  font-size: 11px;
+  background: #2b2b2b;
+  padding: 0 4px;
+}
+
+/* 🔥 COPY BUTTON (pixel style) */
 .copy-btn {
-  background: #1e90ff;
-  border: none;
+  font-family: 'Minecraft', Arial;
+  background: #3a3a3a;
   color: white;
-  padding: 5px 8px;
+
+  padding: 6px 10px;
+  font-size: 13px;
+
+  border: 2px solid #000;
+
+  /* pixel border */
+  box-shadow:
+    inset 2px 2px 0 #aaa,
+    inset -2px -2px 0 #111;
+
   cursor: pointer;
-  font-family: 'Press Start 2P';
 }
 
-.copy-btn:hover {
-  background: #3ea0ff;
+.copy-btn:active {
+  box-shadow:
+    inset -2px -2px 0 #aaa,
+    inset 2px 2px 0 #111;
 }
 
-/* Copied animation FIXED */
+/* 🔥 COPIED TEXT */
 .copied-text {
   position: absolute;
-  top: -20px;
-  font-size: 8px;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-45%) translateY(3px);
+
+  font-size: 11px;
+  background: #1e90ff;
+  color: #fff;
+  padding: 3px 6px;
+
+  border: 2px solid #000;
+
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #000;
+
   opacity: 0;
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 
 .copied-text.show {
   opacity: 1;
-}
-
-/* MENU (RESTORED + FULL WIDTH) */
-.scrollable-menu {
-  position: fixed;
-  top: 180px;
-  left: 0;
-  width: 100%;
-  height: calc(100vh - 180px);
-  background: rgba(0,0,0,0.7);
-  overflow-y: auto;
-  border-top: 3px solid #fff;
-  padding: 10px;
-}
-
-/* Player rows */
-.player-entry {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  border-bottom: 2px solid #fff;
-  font-size: 10px;
-}
-
-/* Top 10 highlight */
-.top-10 {
-  background: rgba(30,144,255,0.3);
+  transform: translateX(-50%) translateY(0);
 }
