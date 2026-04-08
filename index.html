@@ -3,17 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Oak PVP</title>
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- Minecraft Font (FIXED) -->
   <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 
-<!-- Icons -->
 <img src="https://i.imgur.com/aDepPcr.png" class="top-left-icon" id="icon1" data-tooltip="Sword">
 <img src="https://i.imgur.com/Wo3HG50.png" class="top-left-icon" id="icon2" data-tooltip="Axe">
 <img src="https://i.imgur.com/sF0OP5M.png" class="top-left-icon" id="icon3" data-tooltip="Mace">
@@ -24,21 +20,43 @@
 <img src="https://i.imgur.com/94E3KpM.png" class="top-left-icon" id="icon8" data-tooltip="Vanilla">
 <img src="https://i.imgur.com/t0lel83.png" class="top-left-icon" id="icon9" data-tooltip="Overall">
 
-<!-- Menu -->
-<div class="menu">
+<div class="menu" id="leaderboardMenu">
   <div class="menu-header" id="menuTitle">Overall Leaderboard</div>
   <div class="menu-content" id="menuContent"></div>
 </div>
 
-<!-- Title -->
 <h1 class="main-title">Oak PVP</h1>
 
-<!-- IP -->
 <div class="ip-bubble">
   <span class="ip-label">IP:</span>
   <span class="ip-value" id="ipValue">167.114.213.73:25604</span>
   <button class="copy-btn" id="copyBtn">Copy</button>
   <span class="copied-text" id="copiedText">Copied!</span>
+</div>
+
+<div id="terminal" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:black; color:#00ff00; padding:20px; z-index:9999;">
+  <div>And</div>
+  <div>&lt; <input id="passwordInput" type="password" style="background:black; border:none; color:#00ff00; outline:none; font-family:'Minecraft'; width:80%;"></div>
+</div>
+
+<div id="panel" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#111; color:#00ff00; padding:20px; z-index:9999;">
+  <button id="addBtn" style="margin:10px; font-family:'Minecraft';">Add Stats</button>
+  <button id="clearBtn" style="margin:10px; font-family:'Minecraft';">Clear Leaderboard</button>
+  <div id="form" style="display:none;">
+    <input id="user" placeholder="Username" style="display:block; margin:10px; font-family:'Minecraft'; width:90%;">
+    <select id="mode" size="5" style="display:block; margin:10px; font-family:'Minecraft'; width:95%;">
+      <option>Sword</option>
+      <option>Axe</option>
+      <option>Mace</option>
+      <option>UHC</option>
+      <option>Pot</option>
+      <option>Netherite OP</option>
+      <option>SMP</option>
+      <option>Vanilla</option>
+    </select>
+    <input id="points" placeholder="Points" style="display:block; margin:10px; font-family:'Minecraft'; width:50%;">
+    <input id="date" placeholder="DD/MM/YYYY HH:MM" style="display:block; margin:10px; font-family:'Minecraft'; width:70%;">
+  </div>
 </div>
 
 <script src="script.js"></script>
