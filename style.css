@@ -5,7 +5,6 @@ body {
   font-family: 'Minecraft';
 }
 
-/* Icons */
 .top-left-icon {
   position: fixed;
   top: 110px;
@@ -29,7 +28,6 @@ body {
   box-shadow: 0 0 15px #1e90ff;
 }
 
-/* 🔥 TOOLTIP (raised 2px) */
 .tooltip {
   position: fixed;
   background: black;
@@ -38,36 +36,25 @@ body {
   pointer-events: none;
   opacity: 0;
   transition: 0.1s;
-
   transform: translate(-50%, -130%);
-
-  /* 🔥 PIXEL BORDER */
   border: 2px solid #555;
-  box-shadow:
-    2px 2px 0 #000,
-    -2px -2px 0 #aaa;
+  box-shadow: 2px 2px 0 #000, -2px -2px 0 #aaa;
 }
+
 .tooltip.show {
   opacity: 1;
 }
 
-/* 🔥 MENU (pixel border added) */
 .menu {
   position: fixed;
   top: 180px;
+  bottom: 0;
   width: 100%;
-  height: 400px;
   background: #2b2b2b;
-
   overflow-y: auto;
-
   border-top: 3px solid #555;
-
-  /* pixel effect */
-  box-shadow:
-    inset 0 0 0 2px #000,
-    inset 2px 2px 0 #aaa,
-    inset -2px -2px 0 #111;
+  box-shadow: inset 0 0 0 2px #000, inset 2px 2px 0 #aaa, inset -2px -2px 0 #111;
+  max-height: calc(100vh - 180px);
 }
 
 .menu-header {
@@ -77,20 +64,18 @@ body {
   font-weight: bold;
 }
 
-/* 🔥 PLAYER ROWS (pixel style) */
+.menu-content {
+  max-height: calc(100vh - 220px);
+}
+
 .player {
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
   margin: 6px;
   background: #3a3a3a;
-
-  /* pixel border */
   border: 2px solid #000;
-  box-shadow:
-    inset 2px 2px 0 #aaa,
-    inset -2px -2px 0 #111;
-
+  box-shadow: inset 2px 2px 0 #aaa, inset -2px -2px 0 #111;
   opacity: 0;
   transform: translateY(10px);
   animation: fadeUp 0.3s forwards;
@@ -104,12 +89,10 @@ body {
 .rank2 { color: silver; }
 .rank3 { color: #cd7f32; }
 
-/* 🔥 TITLE (glow + animation) */
 .main-title {
   color: #fff;
   font-size: 48px;
   margin: 20px 0;
-
   opacity: 0;
   animation: fadeIn 1.5s forwards, glow 2s infinite alternate;
 }
@@ -120,38 +103,25 @@ body {
 }
 
 @keyframes glow {
-  from {
-    text-shadow: 0 0 5px #fff, 0 0 10px #1e90ff;
-  }
-  to {
-    text-shadow: 0 0 10px #fff, 0 0 25px #1e90ff;
-  }
+  from { text-shadow: 0 0 5px #fff, 0 0 10px #1e90ff; }
+  to { text-shadow: 0 0 10px #fff, 0 0 25px #1e90ff; }
 }
 
-/* 🔥 IP BUBBLE (bigger + pixel border) */
 .ip-bubble {
   position: fixed;
   top: 50px;
   right: 20px;
-
   background: #2b2b2b;
   color: white;
-
   padding: 10px 16px;
   font-size: 14px;
-
   display: inline-flex;
   align-items: center;
   gap: 10px;
-
-  /* pixel border */
   border: 2px solid #000;
-  box-shadow:
-    inset 2px 2px 0 #aaa,
-    inset -2px -2px 0 #111;
+  box-shadow: inset 2px 2px 0 #aaa, inset -2px -2px 0 #111;
 }
 
-/* label */
 .ip-label {
   position: absolute;
   top: -18px;
@@ -161,49 +131,32 @@ body {
   padding: 0 4px;
 }
 
-/* 🔥 COPY BUTTON (pixel style) */
 .copy-btn {
   font-family: 'Minecraft';
   background: #3a3a3a;
   color: white;
-
   padding: 6px 10px;
   font-size: 13px;
-
   border: 2px solid #000;
-
-  /* pixel border */
-  box-shadow:
-    inset 2px 2px 0 #aaa,
-    inset -2px -2px 0 #111;
-
+  box-shadow: inset 2px 2px 0 #aaa, inset -2px -2px 0 #111;
   cursor: pointer;
 }
 
 .copy-btn:active {
-  box-shadow:
-    inset -2px -2px 0 #aaa,
-    inset 2px 2px 0 #111;
+  box-shadow: inset -2px -2px 0 #aaa, inset 2px 2px 0 #111;
 }
 
-/* 🔥 COPIED TEXT */
 .copied-text {
   position: absolute;
   top: -28px;
   left: 50%;
   transform: translateX(-45%) translateY(3px);
-
   font-size: 11px;
   background: #1e90ff;
   color: #fff;
   padding: 3px 6px;
-
   border: 2px solid #000;
-
-  box-shadow:
-    inset 1px 1px 0 #fff,
-    inset -1px -1px 0 #000;
-
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #000;
   opacity: 0;
   transition: all 0.3s ease;
 }
@@ -211,4 +164,13 @@ body {
 .copied-text.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+@media screen and (max-width: 600px) {
+  .top-left-icon { width: 40px; top: 90px; }
+  .main-title { font-size: 36px; }
+  .menu-header { font-size: 16px; padding: 8px 12px; }
+  .player { padding: 8px 12px; margin: 4px; }
+  .copy-btn { padding: 4px 8px; font-size: 12px; }
+  .ip-bubble { font-size: 12px; padding: 8px 10px; }
 }
