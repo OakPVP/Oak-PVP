@@ -22,6 +22,8 @@ body {
 #icon7 { left: 490px; }
 #icon8 { left: 560px; }
 #icon9 { left: 630px; }
+#icon10 { left: 700px; }
+#icon11 { left: 770px; }
 
 .top-left-icon:hover {
   transform: scale(1.2);
