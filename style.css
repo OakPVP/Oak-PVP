@@ -73,6 +73,7 @@ body {
 .player {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 10px 20px;
   margin: 6px;
   background: #3a3a3a;
@@ -98,8 +99,9 @@ body {
   width: 100px;
   text-align: right;
 }
-@keyframes fadeUp {
-  to { opacity:1; transform:translateY(0);}
+
+@keyframes fadeOnly {
+  to { opacity: 1; }
 }
 
 .rank1 { color: gold; }
