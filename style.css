@@ -72,17 +72,32 @@ body {
 
 .player {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   padding: 10px 20px;
   margin: 6px;
   background: #3a3a3a;
   border: 2px solid #000;
   box-shadow: inset 2px 2px 0 #aaa, inset -2px -2px 0 #111;
   opacity: 0;
-  transform: translateY(10px);
-  animation: fadeUp 0.3s forwards;
+  animation: fadeOnly 0.3s forwards;
 }
 
+.player span:nth-child(1) {
+  display: inline-block;
+  width: 60px;
+  text-align: left;
+}
+
+.player span:nth-child(2) {
+  flex: 1;
+  text-align: left;
+}
+
+.player span:nth-child(3) {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+}
 @keyframes fadeUp {
   to { opacity:1; transform:translateY(0);}
 }
